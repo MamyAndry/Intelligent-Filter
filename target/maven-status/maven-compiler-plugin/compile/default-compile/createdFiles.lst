@@ -1,0 +1,12 @@
+com/largelanguagemodel/views/ProduitDetails.class
+com/largelanguagemodel/mapping/Mapping.class
+com/largelanguagemodel/App.class
+com/largelanguagemodel/traitement/StringTreatment.class
+com/largelanguagemodel/assets/Syntaxe.class
+com/largelanguagemodel/assets/Produit.class
+com/largelanguagemodel/assets/Categorie.class
+com/largelanguagemodel/views/EquivalenceSyntaxe.class
+com/largelanguagemodel/assets/Dico.class
+com/largelanguagemodel/assets/Equivalence.class
+com/largelanguagemodel/assets/Columns.class
+com/largelanguagemodel/parser/TextService.class
