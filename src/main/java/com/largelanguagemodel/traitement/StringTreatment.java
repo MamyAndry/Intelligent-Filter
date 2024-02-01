@@ -1,18 +1,13 @@
 package com.largelanguagemodel.traitement;
 
 import java.sql.Connection;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import com.dao.annotation.Column;
 import com.dao.utils.ObjectUtility;
 import com.largelanguagemodel.assets.Categorie;
 import com.largelanguagemodel.assets.Columns;
 import com.largelanguagemodel.assets.Dico;
 import com.largelanguagemodel.assets.Syntaxe;
-import com.largelanguagemodel.mapping.Mapping;
 import com.largelanguagemodel.views.EquivalenceSyntaxe;
 
 public class StringTreatment {
@@ -26,7 +21,10 @@ public class StringTreatment {
         this.query = query;
     }
 
-    public  HashMap<String, String> analyze(String str, Connection con) throws Exception{
+    public String[] treatNumber(String nbr){
+        return nbr.split(",");
+    }
+    public HashMap<String, String> analyze(String str, Connection con) throws Exception{
         HashMap<String, String> lst = new HashMap<>();
         String[] splited = str.split(" ");
 
@@ -65,10 +63,14 @@ public class StringTreatment {
             condition +=  equivalenceSyntaxe.get(0).getEquivalence().replace("?", temp);
         } 
         if(map.get("syntaxe") != null && map.get("column") != null && map.get("number") != null){
-            condition += "AND " + map.get("column");
+            condition += "AND ";
+            String[] numbers = this.treatNumber(map.get("number"));
             List<EquivalenceSyntaxe> equivalenceSyntaxe = new EquivalenceSyntaxe().findWhere(
                 con, "nom = '" + map.get("column") + "' AND libelle = '" + map.get("syntaxe") + "'");
-            condition += equivalenceSyntaxe.get(0).getEquivalence() + map.get("number");
+            condition += equivalenceSyntaxe.get(0).getEquivalence()
+                .replace("?1", numbers[0]);
+            if(numbers.length == 2)
+               condition = condition.replace("?2", numbers[1]);
         }
 
         res = res.replace("#categorie#", categorie);

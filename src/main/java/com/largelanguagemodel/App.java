@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.dao.database.DbConnection;
 import com.dao.file.JsonUtility;
+import com.dao.utils.ObjectUtility;
 import com.largelanguagemodel.assets.Dico;
 import com.largelanguagemodel.assets.Produit;
 import com.largelanguagemodel.traitement.StringTreatment;
@@ -19,7 +20,7 @@ public class App
     {
         DbConnection dbConnection = new DbConnection();
         try{
-            String recherche = "plus chere telephone";
+            String recherche = "prix telephone superieure a 100";
             StringTreatment treat = new StringTreatment();
             String query = treat.getSearchQuery(recherche, dbConnection.getConnection());
             System.out.println(query);

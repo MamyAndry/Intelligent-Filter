@@ -37,7 +37,7 @@ CREATE TABLE equivalence(
 
 CREATE TABLE dico(
     id_dico SERIAL PRIMARY KEY,
-    id_column VARCHAR(8) REFERENCES columns(id_column),
+    radical VARCHAR(50),
     annexe VARCHAR(50) 
 );
 

@@ -13,21 +13,22 @@ public class Dico extends BddObject{
     @PrimaryKey(autoIncrement = true)
     @Column(name = "id_dico")
     Integer idDico;
-    @ForeignKey(mappedBy = "id_column", foreignType = ForeignType.OneToMany)
-    Columns column;
+    @Column
+    String radical;
     @Column
     String annexe;
+
+    public String getRadical() {
+        return radical;
+    }
+    public void setRadical(String radical) {
+        this.radical = radical;
+    }
     public Integer getIdDico() {
         return idDico;
     }
     public void setIdDico(Integer idDico) {
         this.idDico = idDico;
-    }
-    public Columns getColumn() {
-        return column;
-    }
-    public void setColumn(Columns column) {
-        this.column = column;
     }
     public String getAnnexe() {
         return annexe;
@@ -41,7 +42,7 @@ public class Dico extends BddObject{
         if(lst.size() == 0)
             return str;
         else{
-            return lst.get(0).getColumn().getNom();
+            return lst.get(0).getRadical();
         }
     }
 }
